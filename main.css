@@ -1,0 +1,51 @@
+body {
+    transition: all 0.5s ease-in-out;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+
+input[type="text"]{
+    transition: all 0.5s ease-in-out;
+    background-color: #f2f2f2;
+    color: #333;
+    border: 1px solid #333;
+}
+
+button {
+    background-color: #fff;
+    color: #222;
+}
+
+li {
+    list-style: none;
+}
+
+.contenedor {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.Darkmode #resultados {
+    color: #fff;
+}
+
+.Darkmode{
+    transform: all 0.5s ease-in-out;
+    background-color: #222;
+    color: #fff
+}
+
+.Darkmode button {
+    background-color: #232323;
+    color: #fff;
+}
+
+.Darkmode input[type="text"] {
+    transition: all 0.5s ease-in-out;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #fff;
+}

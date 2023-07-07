@@ -4,6 +4,8 @@ const API = "https://api.dictionaryapi.dev/api/v2/entries/en/"
 const inputpalabra = document.getElementById('palabra')
 const boton = document.getElementById('boton')
 const resultado = document.getElementById('resultado')
+const Darkmode = document.getElementById('Darkmode');
+const body = document.body
 
 function Busquedadebounce(func, delay){
     let timeoutId;
@@ -40,6 +42,13 @@ const buscar = Busquedadebounce(()=> {
 
 inputpalabra.addEventListener('input', buscar)
 boton.addEventListener('click', buscar)
+
+Darkmode.addEventListener('click',()=> {
+    body.classList.toggle('Darkmode');
+    if (body.classList.contains('Darkmode')){
+        Darkmode.textContent = 'Modo claro'
+    } else Darkmode.textContent = 'Modo Oscuro'
+})
 
 
 
