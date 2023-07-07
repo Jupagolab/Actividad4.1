@@ -1,25 +1,29 @@
 const API = "https://api.dictionaryapi.dev/api/v2/entries/en/"
  
-// EL BUSCADOR SE HACER CON UN EVENTLINTENER ("INPUT")
+
+const palabra = document.getElementById('palabra')
+const boton = document.getElementById('boton')
+const resultado = document.getElementById('resultado')
 
 
+    document.getElementById("boton").addEventListener("click",() => {
 
-    document.getElementById("Palabra").addEventListener("input",() => {
+        const Palabra = document.getElementById("palabra").value
 
-        const Palabra = document.getElementById("Palabra").value
-
-        fetch(API+Palabra, { 
-            headers:{
-                'Content-Type': 'application/json'
-              }
-        }) 
+        fetch(API+Palabra) 
         .then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => {console.log(response), document.getElementById("resultado").innerHTML = `
+        .then(response => {
+            const data = response[0]
+            const definitions = data.meanings.map(meaning => meaning.definitions[0].definition);
+            resultado.innerHTML = `
+            <h2> ${data.word}</h2>
+            <ul>
+            ${definitions.map(definition => `<li>${definition}</li>`).join('')}
+            </ul>`
         
-        <h2> ${response[0].word}</h2>
-        <p> ${response[0].meanings[2].definitions[0].definition}</p>`
-        });
+
+        })
+        .catch(error => {resultado.innerHTML = `No se encontraron resultados para ${Palabra}`});
     
     } ) 
 
