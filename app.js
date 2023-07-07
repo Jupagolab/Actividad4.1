@@ -5,6 +5,7 @@ const inputpalabra = document.getElementById('palabra')
 const boton = document.getElementById('boton')
 const resultado = document.getElementById('resultado')
 const Darkmode = document.getElementById('Darkmode');
+const fuentes = document.getElementById('Fuentes');
 const body = document.body
 
 function Busquedadebounce(func, delay){
@@ -42,6 +43,19 @@ const buscar = Busquedadebounce(()=> {
 
 inputpalabra.addEventListener('input', buscar)
 boton.addEventListener('click', buscar)
+
+fuentes.addEventListener('change', ()=> {
+    const fuentesclass = fuentes.value
+
+    if(body.classList.contains('Darkmode')){
+        body.classList = ''
+        body.classList.add('Darkmode', fuentesclass)
+    } else {
+        body.classList = ''
+        body.classList.add(fuentesclass) 
+    }
+})
+
 
 Darkmode.addEventListener('click',()=> {
     body.classList.toggle('Darkmode');
