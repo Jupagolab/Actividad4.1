@@ -1,14 +1,25 @@
 const API = "https://api.dictionaryapi.dev/api/v2/entries/en/"
  
 
-const palabra = document.getElementById('palabra')
+const inputpalabra = document.getElementById('palabra')
 const boton = document.getElementById('boton')
 const resultado = document.getElementById('resultado')
 
+function Busquedadebounce(func, delay){
+    let timeoutId;
+    return function(...args){
+        if (timeoutId) {
+            clearTimeout(timeoutId)
+        }
+        timeoutId = setTimeout(()=>{
+            func.apply(this, args);
+        }, delay);
+    }
+}
 
-    document.getElementById("boton").addEventListener("click",() => {
+const buscar = Busquedadebounce(()=> {
 
-        const Palabra = document.getElementById("palabra").value
+    const Palabra = inputpalabra.value
 
         fetch(API+Palabra) 
         .then(res => res.json())
@@ -25,7 +36,12 @@ const resultado = document.getElementById('resultado')
         })
         .catch(error => {resultado.innerHTML = `No se encontraron resultados para ${Palabra}`});
     
-    } ) 
+}, 500);
+
+inputpalabra.addEventListener('input', buscar)
+boton.addEventListener('click', buscar)
+
+
 
 
 
